@@ -41,9 +41,9 @@ extension Environment {
 	var adjustEnvironment: String {
 		switch self {
 		case .sandbox:
-			return "ADJEnvironmentSandbox"
+			return ADJEnvironmentSandbox
 		case .production:
-			return "ADJEnvironmentProduction"
+			return ADJEnvironmentProduction
 		}
 	}
 }
