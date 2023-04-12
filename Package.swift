@@ -13,6 +13,10 @@ let package = Package(
 			name: "AdjustDependency",
 			targets: ["AdjustDependency"]
 		),
+		.library(
+			name: "AdjustDependencyLive",
+			targets: ["AdjustDependencyLive"]
+		),
 	],
 	dependencies: [
 		.package(url: "https://github.com/adjust/ios_sdk.git", from: "4.33.4"),

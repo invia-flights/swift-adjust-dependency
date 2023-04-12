@@ -2,11 +2,19 @@ import Dependencies
 import Foundation
 
 public struct AppSecret {
-	let secretID: UInt
-	let info1: UInt
-	let info2: UInt
-	let info3: UInt
-	let info4: UInt
+	public init(secretID: UInt, info1: UInt, info2: UInt, info3: UInt, info4: UInt) {
+		self.secretID = secretID
+		self.info1 = info1
+		self.info2 = info2
+		self.info3 = info3
+		self.info4 = info4
+	}
+	
+	public let secretID: UInt
+	public let info1: UInt
+	public let info2: UInt
+	public let info3: UInt
+	public let info4: UInt
 }
 
 public enum Environment {
@@ -15,6 +23,20 @@ public enum Environment {
 }
 
 public struct Configuration {
+	public init(
+		token: String,
+		environment: Environment,
+		allowSuppressLogLevel: Bool,
+		appSecret: AppSecret,
+		logLevel: LogLevel
+	) {
+		self.token = token
+		self.environment = environment
+		self.allowSuppressLogLevel = allowSuppressLogLevel
+		self.appSecret = appSecret
+		self.logLevel = logLevel
+	}
+
 	public let token: String
 	public let environment: Environment
 	public let allowSuppressLogLevel: Bool
@@ -23,11 +45,26 @@ public struct Configuration {
 }
 
 public struct Revenue {
+	public init(amount: Double, currency: String) {
+		self.amount = amount
+		self.currency = currency
+	}
+	
+	public init(amount: Decimal, currency: String) {
+		self.amount = Double(truncating: amount as NSNumber)
+		self.currency = currency
+	}
+	
 	public let amount: Double
 	public let currency: String
 }
 
 public struct Event {
+	public init(_ token: String, revenue: Revenue? = nil) {
+		self.token = token
+		self.revenue = revenue
+	}
+	
 	public let token: String
 	public let revenue: Revenue?
 }
