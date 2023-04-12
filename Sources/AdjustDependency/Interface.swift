@@ -74,6 +74,7 @@ public struct AdjustClient {
 		setEnabled: @escaping (Bool) -> Void,
 		isEnabled: @escaping () -> Bool,
 		appDidLaunch: @escaping (Configuration) -> Void,
+		appWillOpen: @escaping (URL) -> Void,
 		setDeviceToken: @escaping (Data) -> Void,
 		trackEvent: @escaping (Event) -> Void
 	) {
@@ -82,11 +83,13 @@ public struct AdjustClient {
 		self.appDidLaunch = appDidLaunch
 		self.setDeviceToken = setDeviceToken
 		self.trackEvent = trackEvent
+		self.appWillOpen = appWillOpen
 	}
 
 	public var setEnabled: (Bool) -> Void
 	public var isEnabled: () -> Bool
 	public var appDidLaunch: (Configuration) -> Void
+	public var appWillOpen: (URL) -> Void
 	public var setDeviceToken: (Data) -> Void
 	public var trackEvent: (Event) -> Void
 }
@@ -106,6 +109,7 @@ extension AdjustClient: TestDependencyKey {
 		setEnabled: unimplemented("setEnabled"),
 		isEnabled: unimplemented("isEnabled"),
 		appDidLaunch: unimplemented("appDidLaunch"),
+		appWillOpen: unimplemented("appWillOpen"),
 		setDeviceToken: unimplemented("setDeviceToken"),
 		trackEvent: unimplemented("trackEvent")
 	)

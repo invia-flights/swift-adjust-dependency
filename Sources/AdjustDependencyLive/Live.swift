@@ -19,6 +19,9 @@ extension AdjustClient: DependencyKey {
 			config?.logLevel = configuration.logLevel.adjustLogLevel
 			Adjust.appDidLaunch(config)
 		},
+		appWillOpen: { url in
+			Adjust.appWillOpen(url)
+		},
 		setDeviceToken: { token in
 			Adjust.setDeviceToken(token)
 		},
