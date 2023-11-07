@@ -1,22 +1,6 @@
 import Dependencies
 import Foundation
 
-public struct AppSecret {
-	public init(secretID: UInt, info1: UInt, info2: UInt, info3: UInt, info4: UInt) {
-		self.secretID = secretID
-		self.info1 = info1
-		self.info2 = info2
-		self.info3 = info3
-		self.info4 = info4
-	}
-	
-	public let secretID: UInt
-	public let info1: UInt
-	public let info2: UInt
-	public let info3: UInt
-	public let info4: UInt
-}
-
 public enum Environment {
 	case sandbox
 	case production
@@ -27,20 +11,17 @@ public struct Configuration {
 		token: String,
 		environment: Environment,
 		allowSuppressLogLevel: Bool,
-		appSecret: AppSecret,
 		logLevel: LogLevel
 	) {
 		self.token = token
 		self.environment = environment
 		self.allowSuppressLogLevel = allowSuppressLogLevel
-		self.appSecret = appSecret
 		self.logLevel = logLevel
 	}
 
 	public let token: String
 	public let environment: Environment
 	public let allowSuppressLogLevel: Bool
-	public let appSecret: AppSecret
 	public let logLevel: LogLevel
 }
 
