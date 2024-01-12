@@ -20,7 +20,7 @@ let package = Package(
 	],
 	dependencies: [
 		.package(url: "https://github.com/adjust/ios_sdk.git", from: "4.33.4"),
-		.package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "0.6.0"),
+		.package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.1.4"),
 	],
 	targets: [
 		// Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -29,6 +29,7 @@ let package = Package(
 			name: "AdjustDependency",
 			dependencies: [
 				.product(name: "Dependencies", package: "swift-dependencies"),
+				.product(name: "DependenciesMacros", package: "swift-dependencies"),
 			]
 		),
 		.target(

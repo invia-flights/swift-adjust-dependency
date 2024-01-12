@@ -1,5 +1,6 @@
 import Dependencies
 import Foundation
+import DependenciesMacros
 
 public enum Environment {
 	case sandbox
@@ -50,25 +51,10 @@ public struct Event {
 	public let revenue: Revenue?
 }
 
+@DependencyClient
 public struct AdjustClient {
-	public init(
-		setEnabled: @escaping (Bool) -> Void,
-		isEnabled: @escaping () -> Bool,
-		appDidLaunch: @escaping (Configuration) -> Void,
-		appWillOpen: @escaping (URL) -> Void,
-		setDeviceToken: @escaping (Data) -> Void,
-		trackEvent: @escaping (Event) -> Void
-	) {
-		self.setEnabled = setEnabled
-		self.isEnabled = isEnabled
-		self.appDidLaunch = appDidLaunch
-		self.setDeviceToken = setDeviceToken
-		self.trackEvent = trackEvent
-		self.appWillOpen = appWillOpen
-	}
-
 	public var setEnabled: (Bool) -> Void
-	public var isEnabled: () -> Bool
+	public var isEnabled: () -> Bool = { false }
 	public var appDidLaunch: (Configuration) -> Void
 	public var appWillOpen: (URL) -> Void
 	public var setDeviceToken: (Data) -> Void
@@ -86,14 +72,7 @@ public enum LogLevel {
 }
 
 extension AdjustClient: TestDependencyKey {
-	public static var testValue: AdjustClient = .init(
-		setEnabled: unimplemented("setEnabled"),
-		isEnabled: unimplemented("isEnabled"),
-		appDidLaunch: unimplemented("appDidLaunch"),
-		appWillOpen: unimplemented("appWillOpen"),
-		setDeviceToken: unimplemented("setDeviceToken"),
-		trackEvent: unimplemented("trackEvent")
-	)
+	public static var testValue: AdjustClient = .init()
 }
 
 public extension DependencyValues {
