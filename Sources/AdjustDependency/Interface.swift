@@ -7,7 +7,7 @@ public enum Environment {
 	case production
 }
 
-public struct Configuration {
+public struct Configuration: Equatable {
 	public init(
 		token: String,
 		environment: Environment,
