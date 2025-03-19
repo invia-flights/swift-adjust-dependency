@@ -1,6 +1,6 @@
 import Dependencies
-import Foundation
 import DependenciesMacros
+import Foundation
 
 public enum Environment {
 	case sandbox
@@ -31,12 +31,12 @@ public struct Revenue {
 		self.amount = amount
 		self.currency = currency
 	}
-	
+
 	public init(amount: Decimal, currency: String) {
 		self.amount = Double(truncating: amount as NSNumber)
 		self.currency = currency
 	}
-	
+
 	public let amount: Double
 	public let currency: String
 }
@@ -46,7 +46,7 @@ public struct Event {
 		self.token = token
 		self.revenue = revenue
 	}
-	
+
 	public let token: String
 	public let revenue: Revenue?
 }
@@ -54,7 +54,6 @@ public struct Event {
 @DependencyClient
 public struct AdjustClient {
 	public var setEnabled: (Bool) -> Void
-	public var isEnabled: () -> Bool = { false }
 	public var appDidLaunch: (Configuration) -> Void
 	public var appWillOpen: (URL) -> Void
 	public var setDeviceToken: (Data) -> Void

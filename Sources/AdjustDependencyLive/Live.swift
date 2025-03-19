@@ -1,15 +1,12 @@
-import Adjust
 import AdjustDependency
+import AdjustSdk
 import Dependencies
 import Foundation
 
 extension AdjustClient: DependencyKey {
 	public static var liveValue: AdjustClient = .init(
 		setEnabled: { enabled in
-			Adjust.setEnabled(enabled)
-		},
-		isEnabled: {
-			Adjust.isEnabled()
+			enabled ? Adjust.enable() : Adjust.disable()
 		},
 		appDidLaunch: { configuration in
 			let config = ADJConfig(
@@ -17,13 +14,14 @@ extension AdjustClient: DependencyKey {
 				environment: configuration.environment.adjustEnvironment
 			)
 			config?.logLevel = configuration.logLevel.adjustLogLevel
-			Adjust.appDidLaunch(config)
+			Adjust.initSdk(config)
 		},
 		appWillOpen: { url in
-			Adjust.appWillOpen(url)
+			guard let deeplink = ADJDeeplink(deeplink: url) else { return }
+			Adjust.processDeeplink(deeplink)
 		},
 		setDeviceToken: { token in
-			Adjust.setDeviceToken(token)
+			Adjust.setPushToken(token)
 		},
 		trackEvent: { event in
 			guard let adjustEvent = ADJEvent(eventToken: event.token) else {
@@ -52,19 +50,19 @@ extension LogLevel {
 	var adjustLogLevel: ADJLogLevel {
 		switch self {
 		case .verbose:
-			return ADJLogLevelVerbose
+			return ADJLogLevel.verbose
 		case .debug:
-			return ADJLogLevelDebug
+			return ADJLogLevel.debug
 		case .info:
-			return ADJLogLevelInfo
+			return ADJLogLevel.info
 		case .warn:
-			return ADJLogLevelWarn
+			return ADJLogLevel.warn
 		case .error:
-			return ADJLogLevelError
+			return ADJLogLevel.error
 		case .assert:
-			return ADJLogLevelAssert
+			return ADJLogLevel.assert
 		case .suppress:
-			return ADJLogLevelSuppress
+			return ADJLogLevel.suppress
 		}
 	}
 }
