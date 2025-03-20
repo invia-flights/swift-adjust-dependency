@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "adjust_signature_sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adjust/adjust_signature_sdk.git",
+      "state" : {
+        "revision" : "93c40d7fa27b709a81adc50e41b400ce4411c7ff",
+        "version" : "3.35.2"
+      }
+    },
+    {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/combine-schedulers",
@@ -14,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/adjust/ios_sdk.git",
       "state" : {
-        "revision" : "6ae03883c3b7d22e72e2a5937ad5dd8765d9c31d",
-        "version" : "4.33.4"
+        "revision" : "a32b766c9d798dbdfd90cc692060359bf777c654",
+        "version" : "5.1.1"
       }
     },
     {

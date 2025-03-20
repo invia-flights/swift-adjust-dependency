@@ -19,7 +19,7 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/adjust/ios_sdk.git", from: "4.33.4"),
+		.package(url: "https://github.com/adjust/ios_sdk.git", from: "5.1.1"),
 		.package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.1.4"),
 	],
 	targets: [
@@ -35,7 +35,7 @@ let package = Package(
 		.target(
 			name: "AdjustDependencyLive",
 			dependencies: [
-				.product(name: "Adjust", package: "ios_sdk"),
+				.product(name: "AdjustSdk", package: "ios_sdk"),
 				"AdjustDependency",
 			]
 		),
