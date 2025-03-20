@@ -30,6 +30,15 @@ extension AdjustClient: DependencyKey {
 			if let revenue = event.revenue {
 				adjustEvent.setRevenue(revenue.amount, currency: revenue.currency)
 			}
+			if let partnerParameters = event.partnerParameters {
+				for (key, value) in partnerParameters {
+					guard !key.isEmpty, !value.isEmpty else { continue }
+					adjustEvent.addPartnerParameter(key, value: value)
+				}
+			}
+			if let deduplicationId = event.deduplicationId {
+				adjustEvent.setDeduplicationId(deduplicationId)
+			}
 			Adjust.trackEvent(adjustEvent)
 		}
 	)

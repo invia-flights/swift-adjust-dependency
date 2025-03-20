@@ -42,13 +42,22 @@ public struct Revenue {
 }
 
 public struct Event {
-	public init(_ token: String, revenue: Revenue? = nil) {
+	public init(
+		_ token: String,
+		revenue: Revenue? = nil,
+		partnerParameters: [String: String]? = nil,
+		deduplicationId: String? = nil
+	) {
 		self.token = token
 		self.revenue = revenue
+		self.partnerParameters = partnerParameters
+		self.deduplicationId = deduplicationId
 	}
 
 	public let token: String
 	public let revenue: Revenue?
+	public let partnerParameters: [String: String]?
+	public let deduplicationId: String?
 }
 
 @DependencyClient
